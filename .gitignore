@@ -3,3 +3,6 @@ no-git/*
 .DS_Store
 update
 composer.lock
+/test/vendor/
+/test/.phpunit.*
+/test/config.core.php
