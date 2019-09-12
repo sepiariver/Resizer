@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### 0.6.0 (2014-xx-xx)
+### 0.6.0 (2014-06-13)
 
   * BC break: Colors are now provided through the PaletteInterface. Any call
     to previous Imagine\Image\Color constructor must be removed and use the
@@ -23,6 +23,7 @@
   * Add NotSupportedException when a driver does not support an operation (@rouffj).
   * Add support for metadata.
   * Fix #158: GD alpha detection + Color::isOpaque are broken.
+  * Fix color extraction for non-RGB palettes.
 
 ### 0.5.0 (2013-07-10)
 

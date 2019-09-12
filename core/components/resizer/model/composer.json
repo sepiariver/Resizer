@@ -2,7 +2,7 @@
 	"repositories": [
     {
         "type": "vcs",
-        "url": "https://github.com/oo12/Reductionist"
+        "url": "https://github.com/sepiariver/Reductionist"
     }
 ],
 	"require": {

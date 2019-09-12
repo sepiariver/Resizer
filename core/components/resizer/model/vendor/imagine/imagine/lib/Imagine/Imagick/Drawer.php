@@ -330,37 +330,28 @@ final class Drawer implements DrawerInterface
             $text->setTextAntialias(true);
 
             $info = $this->imagick->queryFontMetrics($text, $string);
-            // $rad  = deg2rad($angle);
-            // $cos  = cos($rad);
-            // $sin  = sin($rad);
+            $rad  = deg2rad($angle);
+            $cos  = cos($rad);
+            $sin  = sin($rad);
 
-            // // round(0 * $cos - 0 * $sin)
-            // $x1 = 0;
-            // $x2 = round($info['characterWidth'] * $cos - $info['characterHeight'] * $sin);
-            // // round(0 * $sin + 0 * $cos)
-            // $y1 = 0;
-            // $y2 = round($info['characterWidth'] * $sin + $info['characterHeight'] * $cos);
+            // round(0 * $cos - 0 * $sin)
+            $x1 = 0;
+            $x2 = round($info['characterWidth'] * $cos - $info['characterHeight'] * $sin);
+            // round(0 * $sin + 0 * $cos)
+            $y1 = 0;
+            $y2 = round($info['characterWidth'] * $sin + $info['characterHeight'] * $cos);
 
-            // $xdiff = 0 - min($x1, $x2);
-            // $ydiff = 0 - min($y1, $y2);
+            $xdiff = 0 - min($x1, $x2);
+            $ydiff = 0 - min($y1, $y2);
 
             if ($width !== null) {
                 $string = $this->wrapText($string, $text, $angle, $width);
             }
 
-            // $this->imagick->annotateImage(
-            //     $text, $position->getX() + $x1 + $xdiff,
-            //     $position->getY() + $y2 + $ydiff, $angle, $string
-            // );
-
-			$deltaX = $info['characterWidth'] * sin(deg2rad($angle));
-			$deltaY = $info['characterHeight'];
-			$posX = $position->getX() - $deltaX;
-			if ($posX < 0) $posX = 0;
-			$this->imagick->annotateImage(
-				$text, $posX,
-				$position->getY() + $deltaY, $angle, $string
-			);
+            $this->imagick->annotateImage(
+                $text, $position->getX() + $x1 + $xdiff,
+                $position->getY() + $y2 + $ydiff, $angle, $string
+            );
 
             $pixel->clear();
             $pixel->destroy();

@@ -310,32 +310,23 @@ final class Drawer implements DrawerInterface
             $text->setfillcolor($pixel);
 
             $info = $this->gmagick->queryfontmetrics($text, $string);
-            // $rad  = deg2rad($angle);
-            // $cos  = cos($rad);
-            // $sin  = sin($rad);
+            $rad  = deg2rad($angle);
+            $cos  = cos($rad);
+            $sin  = sin($rad);
 
-            // $x1 = round(0 * $cos - 0 * $sin);
-            // $x2 = round($info['textWidth'] * $cos - $info['textHeight'] * $sin);
-            // $y1 = round(0 * $sin + 0 * $cos);
-            // $y2 = round($info['textWidth'] * $sin + $info['textHeight'] * $cos);
+            $x1 = round(0 * $cos - 0 * $sin);
+            $x2 = round($info['textWidth'] * $cos - $info['textHeight'] * $sin);
+            $y1 = round(0 * $sin + 0 * $cos);
+            $y2 = round($info['textWidth'] * $sin + $info['textHeight'] * $cos);
 
-            // $xdiff = 0 - min($x1, $x2);
-            // $ydiff = 0 - min($y1, $y2);
+            $xdiff = 0 - min($x1, $x2);
+            $ydiff = 0 - min($y1, $y2);
 
             if ($width !== null) {
                 throw new NotSupportedException('Gmagick doesn\'t support queryfontmetrics function for multiline text', 1);
             }
 
-            // $this->gmagick->annotateimage($text, $position->getX() + $x1 + $xdiff, $position->getY() + $y2 + $ydiff, $angle, $string);
-
-			$deltaX = $info['characterWidth'] * sin(deg2rad($angle));
-			$deltaY = $info['characterHeight'];
-			$posX = $position->getX() - $deltaX;
-			if ($posX < 0) $posX = 0;
-			$this->gmagick->annotateimage(
-				$text, $posX,
-				$position->getY() + $deltaY, $angle, $string
-			);
+            $this->gmagick->annotateimage($text, $position->getX() + $x1 + $xdiff, $position->getY() + $y2 + $ydiff, $angle, $string);
 
             unset($pixel, $text);
         } catch (\GmagickException $e) {
