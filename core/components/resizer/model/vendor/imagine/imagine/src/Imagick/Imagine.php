@@ -23,6 +23,7 @@ use Imagine\Image\Palette\CMYK;
 use Imagine\Image\Palette\Color\ColorInterface;
 use Imagine\Image\Palette\Grayscale;
 use Imagine\Image\Palette\RGB;
+use Imagine\Utils\ErrorHandling;
 
 /**
  * Imagine implementation using the Imagick PHP extension.
@@ -42,6 +43,9 @@ final class Imagine extends AbstractImagine
 
         if (version_compare('6.2.9', $version) > 0) {
             throw new RuntimeException(sprintf('ImageMagick version 6.2.9 or higher is required, %s provided', $version));
+        }
+        if ($version === '7.0.7-32') { // https://github.com/avalanche123/Imagine/issues/689
+            throw new RuntimeException(sprintf('ImageMagick version %s has known bugs that prevent it from working', $version));
         }
     }
 
@@ -103,7 +107,9 @@ final class Imagine extends AbstractImagine
                 if (method_exists($imagick, 'setImageAlpha')) {
                     $imagick->setImageAlpha($pixel->getColorValue(\Imagick::COLOR_ALPHA));
                 } else {
-                    $imagick->setImageOpacity($pixel->getColorValue(\Imagick::COLOR_ALPHA));
+                    ErrorHandling::ignoring(E_DEPRECATED, function () use ($imagick, $pixel) {
+                        $imagick->setImageOpacity($pixel->getColorValue(\Imagick::COLOR_ALPHA));
+                    });
                 }
             }
 

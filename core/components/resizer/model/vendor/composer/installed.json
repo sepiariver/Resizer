@@ -1,17 +1,17 @@
 [
     {
         "name": "imagine/imagine",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.2.2",
+        "version_normalized": "1.2.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/avalanche123/Imagine.git",
-            "reference": "b9e15fac9b79c28cd6b7de3e7e5162e143ae80ad"
+            "reference": "eec39b2092bc8008a92b8d63824476413dbe7511"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/b9e15fac9b79c28cd6b7de3e7e5162e143ae80ad",
-            "reference": "b9e15fac9b79c28cd6b7de3e7e5162e143ae80ad",
+            "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/eec39b2092bc8008a92b8d63824476413dbe7511",
+            "reference": "eec39b2092bc8008a92b8d63824476413dbe7511",
             "shasum": ""
         },
         "require": {
@@ -19,14 +19,14 @@
         },
         "require-dev": {
             "friendsofphp/php-cs-fixer": "2.2.*",
-            "symfony/phpunit-bridge": "^3.2 || ^4.0"
+            "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.4"
         },
         "suggest": {
             "ext-gd": "to use the GD implementation",
             "ext-gmagick": "to use the Gmagick implementation",
             "ext-imagick": "to use the Imagick implementation"
         },
-        "time": "2018-09-25T14:50:23+00:00",
+        "time": "2019-07-09T06:55:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -66,18 +66,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/sepiariver/Reductionist.git",
-            "reference": "22c49a54f74624f1e9edc952721646dd1cac71ed"
+            "reference": "76f6920c68aad39a38b52bf4224694c4982aa756"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/22c49a54f74624f1e9edc952721646dd1cac71ed",
-            "reference": "22c49a54f74624f1e9edc952721646dd1cac71ed",
+            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/76f6920c68aad39a38b52bf4224694c4982aa756",
+            "reference": "76f6920c68aad39a38b52bf4224694c4982aa756",
             "shasum": ""
         },
         "require": {
-            "imagine/imagine": "1.0.0"
+            "imagine/imagine": "1.2.2"
         },
-        "time": "2019-09-12T05:41:12+00:00",
+        "time": "2019-09-12T05:52:07+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {

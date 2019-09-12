@@ -14,6 +14,7 @@ namespace Imagine\Image\Metadata;
 use Imagine\Exception\NotSupportedException;
 use Imagine\File\Loader;
 use Imagine\File\LoaderInterface;
+use Imagine\Utils\ErrorHandling;
 
 /**
  * Metadata driven by Exif information.
@@ -99,30 +100,26 @@ class ExifMetadataReader extends AbstractMetadataReader
      */
     private function extract($path)
     {
-        set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-            if (error_reporting() !== 0) {
-                throw new \Exception($errstr, $errno);
-            }
-        }, E_WARNING | E_NOTICE);
         try {
-            $exifData = @exif_read_data($path, null, true, false);
+            $exifData = ErrorHandling::ignoring(-1, function () use ($path) {
+                return @exif_read_data($path, null, true, false);
+            });
         } catch (\Exception $e) {
             $exifData = false;
+        } catch (\Throwable $e) {
+            $exifData = false;
         }
-        restore_error_handler();
-        if ($exifData === false) {
+        if (!is_array($exifData)) {
             return array();
         }
 
         $metadata = array();
-        $sources = array('EXIF' => 'exif', 'IFD0' => 'ifd0');
-
-        foreach ($sources as $name => $prefix) {
-            if (!isset($exifData[$name])) {
-                continue;
-            }
-            foreach ($exifData[$name] as $prop => $value) {
-                $metadata[$prefix . '.' . $prop] = $value;
+        foreach ($exifData as $prefix => $values) {
+            if (is_array($values)) {
+                $prefix = strtolower($prefix);
+                foreach ($values as $prop => $value) {
+                    $metadata[$prefix . '.' . $prop] = $value;
+                }
             }
         }
 
