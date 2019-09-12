@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class ResizeTest extends TestCase 
+class ResizerTest extends TestCase 
 {
     protected $modx;
     protected $resizer;
@@ -12,7 +12,7 @@ class ResizeTest extends TestCase
     protected $width = 400;
     protected $height = 300;
     protected $quality = 60;
-    protected $formats = ['jpg', 'png', 'gif', 'webp', 'jp2', 'jxr'];
+    protected $formats = ['jpg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_PNG, 'gif' => IMAGETYPE_GIF, 'webp' => IMAGETYPE_WEBP, 'jp2' => IMAGETYPE_JP2];
     protected $graphicsLib = 2;
     
     protected function setUp(): void
@@ -82,7 +82,7 @@ class ResizeTest extends TestCase
             if (strpos($file, '.') === 0) continue;
             if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) continue;
             $full = $this->basePath . $this->srcDir . $file; 
-            foreach ($this->formats as $ext) {
+            foreach ($this->formats as $ext => $type) {
                 if (pathinfo($full, PATHINFO_EXTENSION) === $ext) continue;
                 $thumb = $this->basePath . $this->outDir . $file . '.' . $ext;
                 $this->resizer->processImage(
@@ -94,6 +94,7 @@ class ResizeTest extends TestCase
                 $this->assertFileNotEquals($full, $thumb,  'Failed: ' . $thumb);
                 $this->assertGreaterThan(filesize($thumb), filesize($full), 'Failed: ' . $thumb);
                 $this->assertEquals(getimagesize($thumb)[1], $this->height, 'Failed: ' . $thumb);
+                $this->assertEquals($type, getimagesize($thumb)[2]);
                 if ($this->removeOutput) unlink($thumb);
             }
         }
