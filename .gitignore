@@ -6,3 +6,4 @@ composer.lock
 /test/vendor/
 /test/.phpunit.*
 /test/config.core.php
+/test/output/

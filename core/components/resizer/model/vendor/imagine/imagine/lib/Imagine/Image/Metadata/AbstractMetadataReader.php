@@ -28,14 +28,18 @@ abstract class AbstractMetadataReader implements MetadataReaderInterface
             return new MetadataBag(array_merge(array('filepath' => realpath($file), 'uri' => $file), $this->extractFromFile($file)));
         }
 
-        return new MetadataBag(array_merge(array('uri' => $file)), $this->extractFromFile($file));
+        return new MetadataBag(array_merge(array('uri' => $file), $this->extractFromFile($file)));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function readData($data)
+    public function readData($data, $originalResource = null)
     {
+        if (null !== $originalResource) {
+            return new MetadataBag(array_merge($this->getStreamMetadata($originalResource), $this->extractFromData($data)));
+        }
+
         return new MetadataBag($this->extractFromData($data));
     }
 

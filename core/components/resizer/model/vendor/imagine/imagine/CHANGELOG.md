@@ -1,5 +1,37 @@
 # CHANGELOG
 
+### 0.7.1 (2017-05-16)
+  * Remove Symfony PHPUnit bridge as dependency (@craue)
+
+### 0.7.0 (2017-05-02)
+  * Fix memory usage on metadata reading (@Seldaek)
+  * PHP 7.1 support
+  * Latest Imagemagick compatibility (@jdewit)
+
+### 0.6.3 (2015-09-19)
+  * Fix wrong array_merge when calling Transformation::getFilters without filters
+  * Add export-ignore git attribute (@Benoth)
+  * Fix docblocks (@Sm0ke0ut and @norkunas)
+  * Fix animated gif loop length options (@jygaulier)
+  * Multiple tweaks for the repository and travis builds (@localheinz, @vrkansagara and @dunzun)
+  * Fix metadata extraction from streams (@armatronic)
+  * Fix autorotation (@tarleb)
+  * Load exifmetadata reader whenever possible
+  * Add metadata getter
+
+### 0.6.2 (2014-11-11)
+  * Stripping image containing an invalid ICC profile fails
+  * MetadataBag now implements \Countable
+  * Fix wrong array_merge in MetadataBag giving invalid results with HTTP resources (@javaguirre)
+  * Fix Imagick merge strategy (@GrahamCampbell)
+  * Fixed various alpha issues (@RadekDvorak)
+  * Fix Image cloning on HHVM (@RdeWilde)
+  * Fix exception on invalid file using GD driver (@vlakoff).
+  * Fix ImageInterface::getSize on animated GIFs (@sokac)
+
+### 0.6.1 (2014-06-16)
+  * Fix invalid namespace usage (#336 @csanquer).
+
 ### 0.6.0 (2014-06-13)
 
   * BC break: Colors are now provided through the PaletteInterface. Any call

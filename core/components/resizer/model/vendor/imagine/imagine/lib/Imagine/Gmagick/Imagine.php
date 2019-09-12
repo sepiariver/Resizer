@@ -49,7 +49,7 @@ class Imagine extends AbstractImagine
             $gmagick = new \Gmagick($path);
             $image = new Image($gmagick, $this->createPalette($gmagick), $this->getMetadataReader()->readFile($path));
         } catch (\GmagickException $e) {
-            throw new RuntimeException(sprintf('Could not open image %s', $path), $e->getCode(), $e);
+            throw new RuntimeException(sprintf('Unable to open image %s', $path), $e->getCode(), $e);
         }
 
         return $image;
@@ -122,7 +122,7 @@ class Imagine extends AbstractImagine
             throw new InvalidArgumentException('Couldn\'t read given resource');
         }
 
-        return $this->doLoad($content, $this->getMetadataReader()->readStream($resource));
+        return $this->doLoad($content, $this->getMetadataReader()->readData($content, $resource));
     }
 
     /**
@@ -147,7 +147,7 @@ class Imagine extends AbstractImagine
             case \Gmagick::COLORSPACE_GRAY:
                 return new Grayscale();
             default:
-                throw new NotSupportedException('Only RGB and CMYK colorspace are curently supported');
+                throw new NotSupportedException('Only RGB and CMYK colorspace are currently supported');
         }
     }
 
@@ -157,9 +157,7 @@ class Imagine extends AbstractImagine
             $gmagick = new \Gmagick();
             $gmagick->readimageblob($content);
         } catch (\GmagickException $e) {
-            throw new RuntimeException(
-                'Could not load image from string', $e->getCode(), $e
-            );
+            throw new RuntimeException('Could not load image from string', $e->getCode(), $e);
         }
 
         return new Image($gmagick, $this->createPalette($gmagick), $metadata);
