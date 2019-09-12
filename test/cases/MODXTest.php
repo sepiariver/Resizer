@@ -1,11 +1,18 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class MODXTest extends TestCase 
+class ResizeTest extends TestCase 
 {
     protected $modx;
     protected $resizer;
     protected $basePath;
+    protected $srcDir = '/assets/';
+    protected $outDir = '/output/';
+    protected $removeOutput = true;
+    protected $width = 400;
+    protected $height = 300;
+    protected $quality = 60;
+    protected $graphicsLib = 2;
     
     protected function setUp(): void
     {
@@ -15,7 +22,7 @@ class MODXTest extends TestCase
         $this->modx = new modX();
 
         require_once(dirname($this->basePath) . '/core/components/resizer/model/resizer.class.php');
-        $this->resizer = new Resizer($this->modx, 2);
+        $this->resizer = new Resizer($this->modx, $this->graphicsLib);
     }
     public function testConfig()
     {
@@ -23,21 +30,46 @@ class MODXTest extends TestCase
         $this->assertTrue($this->modx instanceof modX);
         $this->assertTrue($this->resizer instanceof Resizer);
     }
-    public function testResize() 
+    public function testResizeWidth() 
     {
-        $files = ['test-01.jpg', 'test-06.jpg', 'test-16.jpg', 'test-27.jpg'];
+        $dir = $this->basePath . $this->srcDir;
+        $files = scandir($dir);
         foreach ($files as $file) {
-            $full = $this->basePath . '/assets/' . $file;
-            $thumb = $this->basePath . '/output/' . $file;
+            if (strpos($file, '.') === 0) continue;
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) continue;
+            $full = $this->basePath . $this->srcDir . $file;
+            $thumb = $this->basePath . $this->outDir . $file;
             $this->resizer->processImage(
                 $full,
                 $thumb,
-                ['w' => 400, 'q' => 60]
+                ['w' => $this->width, 'q' => $this->quality]
             );
             $this->assertFileExists($thumb);
             $this->assertFileNotEquals($full, $thumb);
             $this->assertGreaterThan(filesize($thumb), filesize($full));
-            $this->assertEquals(getimagesize($thumb)[0], 400);
+            $this->assertEquals(getimagesize($thumb)[0], $this->width);
+            if ($this->removeOutput) unlink($thumb);
+        }
+    }
+    public function testResizeHeight() 
+    {
+        $dir = $this->basePath . $this->srcDir;
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            if (strpos($file, '.') === 0) continue;
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) continue;
+            $full = $this->basePath . $this->srcDir . $file;
+            $thumb = $this->basePath . $this->outDir . $file;
+            $this->resizer->processImage(
+                $full,
+                $thumb,
+                ['h' => $this->height, 'q' => $this->quality]
+            );
+            $this->assertFileExists($thumb);
+            $this->assertFileNotEquals($full, $thumb);
+            $this->assertGreaterThan(filesize($thumb), filesize($full));
+            $this->assertEquals(getimagesize($thumb)[1], $this->height);
+            if ($this->removeOutput) unlink($thumb);
         }
     }
 }
