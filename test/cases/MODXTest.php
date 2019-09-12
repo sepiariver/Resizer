@@ -12,6 +12,7 @@ class ResizeTest extends TestCase
     protected $width = 400;
     protected $height = 300;
     protected $quality = 60;
+    protected $formats = ['jpg', 'png', 'gif', 'webp', 'jp2', 'jxr'];
     protected $graphicsLib = 2;
     
     protected function setUp(): void
@@ -70,6 +71,31 @@ class ResizeTest extends TestCase
             $this->assertGreaterThan(filesize($thumb), filesize($full));
             $this->assertEquals(getimagesize($thumb)[1], $this->height);
             if ($this->removeOutput) unlink($thumb);
+        }
+    }
+    public function testConvertFormat()
+    {
+        $this->removeOutput = false;
+        $dir = $this->basePath . $this->srcDir;
+        $files = scandir($dir);
+        foreach ($files as $file) {
+            if (strpos($file, '.') === 0) continue;
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) continue;
+            $full = $this->basePath . $this->srcDir . $file; 
+            foreach ($this->formats as $ext) {
+                if (pathinfo($full, PATHINFO_EXTENSION) === $ext) continue;
+                $thumb = $this->basePath . $this->outDir . $file . '.' . $ext;
+                $this->resizer->processImage(
+                    $full,
+                    $thumb,
+                    ['h' => $this->height, 'q' => $this->quality]
+                );
+                $this->assertFileExists($thumb, 'Failed: ' . $thumb);
+                $this->assertFileNotEquals($full, $thumb,  'Failed: ' . $thumb);
+                $this->assertGreaterThan(filesize($thumb), filesize($full), 'Failed: ' . $thumb);
+                $this->assertEquals(getimagesize($thumb)[1], $this->height, 'Failed: ' . $thumb);
+                if ($this->removeOutput) unlink($thumb);
+            }
         }
     }
 }
