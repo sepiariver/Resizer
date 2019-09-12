@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 class MODXTest extends TestCase 
 {
     protected $modx;
-    protected $res;
+    protected $resizer;
     
     protected function setUp(): void
     {

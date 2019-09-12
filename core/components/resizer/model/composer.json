@@ -6,7 +6,7 @@
     }
 ],
 	"require": {
-		"oo12/reductionist": "master"
+		"sepiariver/reductionist": "master"
 	},
 	"minimum-stability": "dev"
 }
