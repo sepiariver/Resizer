@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Reductionist' => array($vendorDir . '/sepiariver/reductionist/src'),
-    'Imagine' => array($vendorDir . '/imagine/imagine/lib'),
 );

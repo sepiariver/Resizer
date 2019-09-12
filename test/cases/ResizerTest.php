@@ -12,7 +12,8 @@ class ResizerTest extends TestCase
     protected $width = 400;
     protected $height = 300;
     protected $quality = 60;
-    protected $formats = ['jpg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_PNG, 'gif' => IMAGETYPE_GIF, 'webp' => IMAGETYPE_WEBP, 'jp2' => IMAGETYPE_JP2];
+    protected $formats = ['jpg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_PNG, 'gif' => IMAGETYPE_GIF];
+    protected $newFormats = ['webp' => IMAGETYPE_WEBP, 'jp2' => IMAGETYPE_JP2];
     protected $graphicsLib = 2;
     
     protected function setUp(): void
