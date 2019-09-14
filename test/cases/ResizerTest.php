@@ -12,7 +12,9 @@ class ResizerTest extends TestCase
     protected $width = 400;
     protected $height = 300;
     protected $quality = 60;
-    protected $formats = ['jpg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_PNG, 'gif' => IMAGETYPE_GIF, 'webp' => IMAGETYPE_WEBP, 'jp2' => IMAGETYPE_JP2];
+    protected $formats = ['jpg' => IMAGETYPE_JPEG, 'png' => IMAGETYPE_PNG, 'gif' => IMAGETYPE_GIF];
+    protected $newFormats = ['webp' => IMAGETYPE_WEBP, 'jp2' => IMAGETYPE_JP2];
+    protected $testNewFormats = false;
     protected $graphicsLib = 2;
     
     protected function setUp(): void
@@ -82,7 +84,8 @@ class ResizerTest extends TestCase
             if (strpos($file, '.') === 0) continue;
             if (is_dir($dir . DIRECTORY_SEPARATOR . $file)) continue;
             $full = $this->basePath . $this->srcDir . $file; 
-            foreach ($this->formats as $ext => $type) {
+            $formats = ($this->testNewFormats) ? array_merge($this->formats, $this->newFormats) : $this->formats;
+            foreach ($formats as $ext => $type) {
                 if (pathinfo($full, PATHINFO_EXTENSION) === $ext) continue;
                 $thumb = $this->basePath . $this->outDir . $file . '.' . $ext;
                 $this->resizer->processImage(
