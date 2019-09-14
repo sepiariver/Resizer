@@ -1,4 +1,4 @@
-Resizer v1.0.0-pl
+Resizer v1.0.2-beta
 ==========
 
 A simple, modern image resizer for MODX. Built on [Imagine](https://github.com/avalanche123/Imagine), Resizer supports the Gmagick, Imagick and GD extensions and can be considerably faster than phpThumb for image sizing and cropping operations. Available from the MODX [Extras Repo](http://modx.com/extras/package/resizer).
