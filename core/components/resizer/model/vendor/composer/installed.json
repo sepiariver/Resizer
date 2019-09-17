@@ -61,23 +61,23 @@
     },
     {
         "name": "sepiariver/reductionist",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "dev-imagine-122",
+        "version_normalized": "dev-imagine-122",
         "source": {
             "type": "git",
             "url": "https://github.com/sepiariver/Reductionist.git",
-            "reference": "76f6920c68aad39a38b52bf4224694c4982aa756"
+            "reference": "4f9d53397e6b60597b04df63272a44f60d0bb44e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/76f6920c68aad39a38b52bf4224694c4982aa756",
-            "reference": "76f6920c68aad39a38b52bf4224694c4982aa756",
+            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/4f9d53397e6b60597b04df63272a44f60d0bb44e",
+            "reference": "4f9d53397e6b60597b04df63272a44f60d0bb44e",
             "shasum": ""
         },
         "require": {
             "imagine/imagine": "1.2.2"
         },
-        "time": "2019-09-12T05:52:07+00:00",
+        "time": "2019-09-17T21:01:29+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -97,7 +97,7 @@
         "description": "A simple, modern phpThumb",
         "homepage": "https://github.com/sepiariver/Reductionist",
         "support": {
-            "source": "https://github.com/sepiariver/Reductionist/tree/master"
+            "source": "https://github.com/sepiariver/Reductionist/tree/imagine-122"
         }
     }
 ]
