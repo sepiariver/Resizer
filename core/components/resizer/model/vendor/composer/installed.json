@@ -66,18 +66,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/sepiariver/Reductionist.git",
-            "reference": "4f9d53397e6b60597b04df63272a44f60d0bb44e"
+            "reference": "ae1843a43e5a54e4cc01641cb9fddf6c56cd66dd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/4f9d53397e6b60597b04df63272a44f60d0bb44e",
-            "reference": "4f9d53397e6b60597b04df63272a44f60d0bb44e",
+            "url": "https://api.github.com/repos/sepiariver/Reductionist/zipball/ae1843a43e5a54e4cc01641cb9fddf6c56cd66dd",
+            "reference": "ae1843a43e5a54e4cc01641cb9fddf6c56cd66dd",
             "shasum": ""
         },
         "require": {
             "imagine/imagine": "1.2.2"
         },
-        "time": "2019-09-17T21:01:29+00:00",
+        "time": "2019-09-17T23:01:29+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
