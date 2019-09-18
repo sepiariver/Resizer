@@ -1,5 +1,13 @@
 Resizer Changelog
 
+v2.0.1-dev [17.09.2019]
+------------------------
+
+- update Imagine to 1.2.2
+- make Watermark and Reductionist compatible
+- potential b/c breakage
+- not yet tested with Gmagick
+
 v1.0.1-pl  [26.05.2014]
 -----------------------
 

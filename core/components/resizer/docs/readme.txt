@@ -12,3 +12,5 @@ Copyright 2013
 
 Documentation, bug reports, feature requests:
 https://github.com/oo12/Resizer
+
+UPDATE [17/09/2019] Resizer is being maintained at this fork: https://github.com/sepiariver/Resizer

@@ -6,19 +6,19 @@ $components = array(
 	'packageName' => 'Resizer',  /* No spaces, no dashes */
 	'packageNameLower' => $packageNameLower,
 	'packageDescription' => 'A lightweight, modern image resizer for MODX',
-	'version' => '2.0.0',
+	'version' => '2.0.1',
 	'release' => 'dev',
 	'author' => 'Jason Grant',
 	'email' => '',
 	'authorUrl' => 'https://github.com/oo12',
 	'authorSiteName' => 'GitHub',
-	'packageDocumentationUrl' => 'https://github.com/oo12/Resizer',
+	'packageDocumentationUrl' => 'https://github.com/sepiariver/Resizer',
 	'copyright' => '2014',
 
 	/* no need to edit this except to change format */
 	'createdon' => strftime('%m-%d-%Y'),
 
-	'gitHubUsername' => 'oo12',
+	'gitHubUsername' => 'sepiariver',
 	'gitHubRepository' => 'Resizer',
 
 	/* two-letter code of your primary language */
